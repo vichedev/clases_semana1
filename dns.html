@@ -85,13 +85,15 @@
 
     <!-- 4 jerarquía -->
     <section class="slide h-full flex-col items-center justify-center px-8">
-      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">La jerarquía del DNS</h2>
-      <div class="space-y-3 max-w-3xl w-full">
-        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300">1. Servidores raíz (root)</h3><p class="text-slate-500 dark:text-slate-400 text-sm">El punto de partida de toda consulta.</p></div>
+      <h2 class="text-4xl md:text-5xl font-black mb-6 text-center">La jerarquía del DNS</h2>
+      <div class="space-y-2 max-w-3xl w-full">
+        <div class="rounded-xl bg-amber-500/10 border border-amber-400/40 p-4 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300">🏛️ ICANN — coordina todo el sistema</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Organización mundial que administra los nombres de dominio y supervisa los servidores raíz.</p></div>
         <div class="text-center text-amber-500">↓</div>
-        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300">2. Servidores TLD</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Gestionan las terminaciones: .com, .org, .ec …</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-4 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300">1. Servidores raíz (root)</h3><p class="text-slate-500 dark:text-slate-400 text-sm">El punto de partida de toda consulta.</p></div>
         <div class="text-center text-amber-500">↓</div>
-        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300">3. Servidor autoritativo</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Tiene la IP final del dominio buscado.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-4 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300">2. Servidores TLD</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Gestionan las terminaciones: .com, .org, .ec …</p></div>
+        <div class="text-center text-amber-500">↓</div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-4 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300">3. Servidor autoritativo</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Tiene la IP final del dominio buscado.</p></div>
       </div>
     </section>
 
@@ -103,7 +105,6 @@
         <div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="font-mono font-black text-amber-500 w-20">AAAA</span><p class="text-slate-600 dark:text-slate-300 text-sm">Nombre → dirección IPv6.</p></div>
         <div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="font-mono font-black text-amber-500 w-20">CNAME</span><p class="text-slate-600 dark:text-slate-300 text-sm">Alias de un nombre a otro.</p></div>
         <div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="font-mono font-black text-amber-500 w-20">MX</span><p class="text-slate-600 dark:text-slate-300 text-sm">A qué servidor llega el correo.</p></div>
-        <div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5 md:col-span-2"><span class="font-mono font-black text-amber-500 w-20">TXT</span><p class="text-slate-600 dark:text-slate-300 text-sm">Texto libre: verificaciones y seguridad de correo (SPF, DKIM).</p></div>
       </div>
     </section>
 
