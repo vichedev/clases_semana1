@@ -25,6 +25,12 @@
       }
       .slide h1 { color:#059669 !important; -webkit-text-fill-color:#059669 !important; background:none !important; }
     }
+    .slide .font-mono { word-break: break-word; }
+    @media (max-width: 767px) {
+      .slide { justify-content: flex-start !important; padding: 1.25rem !important; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+      .slide h1 { font-size: 2.1rem !important; line-height: 1.15 !important; }
+      .slide h2 { font-size: 1.55rem !important; line-height: 1.25 !important; }
+    }
   </style>
   <script>(function(){ if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
@@ -37,7 +43,7 @@
 
   <div class="no-print relative flex items-center justify-between px-6 py-3 border-b border-slate-200 dark:border-slate-800">
     <a href="index.html" class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-white text-sm font-semibold">← Inicio</a>
-    <span class="text-emerald-600 dark:text-emerald-400 text-xs md:text-sm font-bold tracking-wider text-center">🏠 SEMANA 3 · LAN</span>
+    <span class="hidden sm:block text-emerald-600 dark:text-emerald-400 text-xs md:text-sm font-bold tracking-wider text-center">🏠 SEMANA 3 · LAN</span>
     <div class="flex items-center gap-2">
       <button onclick="downloadPDF()" class="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-white text-sm font-semibold transition">📄 PDF</button>
       <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center"><span class="theme-icon">🌙</span></button>
