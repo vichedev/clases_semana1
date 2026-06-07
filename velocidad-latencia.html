@@ -11,10 +11,19 @@
     body { font-family: 'Inter', sans-serif; }
     .slide { display:none; } .slide.active { display:flex; }
     @media print {
+      @page { margin: 0; }
       .no-print { display:none !important; }
       html, body { height:auto !important; overflow:visible !important; background:#fff !important; }
       main { height:auto !important; } .bg-decor { display:none !important; }
-      .slide { display:flex !important; page-break-after:always; height:96vh; }
+      .slide { display:flex !important; page-break-after:always; height:96vh; padding-top:78px !important; position:relative; }
+      .slide::before {
+        content: "⚡ SEMANA 5 · VELOCIDAD Y LATENCIA";
+        position:absolute; top:0; left:0; right:0;
+        padding:16px 24px; text-align:center;
+        font-size:18px; font-weight:800; letter-spacing:0.04em; color:#c026d3;
+        border-bottom:2px solid #e2e8f0;
+      }
+      .slide h1 { color:#c026d3 !important; -webkit-text-fill-color:#c026d3 !important; background:none !important; }
     }
   </style>
   <script>(function(){ if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark'); })();</script>
