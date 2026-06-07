@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redes de Telecomunicaciones · Semana 1</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+  <style type="text/tailwindcss">@custom-variant dark (&:where(.dark, .dark *));</style>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .slide { display:none; }
+    .slide.active { display:flex; }
+    @media print {
+      .no-print { display:none !important; }
+      html, body { height:auto !important; overflow:visible !important; background:#fff !important; }
+      main { height:auto !important; }
+      .bg-decor { display:none !important; }
+      .slide { display:flex !important; page-break-after:always; height:96vh; }
+    }
+  </style>
+  <script>(function(){ if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark'); })();</script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white h-screen overflow-hidden transition-colors duration-300">
+
+  <div class="bg-decor fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-400/20 dark:bg-cyan-600/25 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-indigo-400/20 dark:bg-indigo-600/20 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Barra superior -->
+  <div class="no-print relative flex items-center justify-between px-6 py-3 border-b border-slate-200 dark:border-slate-800">
+    <a href="index.html" class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-white text-sm font-semibold">← Inicio</a>
+    <span class="text-cyan-600 dark:text-cyan-400 text-xs md:text-sm font-bold tracking-wider text-center">📡 SEMANA 1 · REDES DE TELECOMUNICACIONES</span>
+    <div class="flex items-center gap-2">
+      <button onclick="downloadPDF()" class="px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-white text-sm font-semibold transition flex items-center gap-1">📄 PDF</button>
+      <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center"><span class="theme-icon">🌙</span></button>
+      <span id="counter" class="text-slate-500 dark:text-slate-400 text-sm font-mono w-12 text-right">1/12</span>
+    </div>
+  </div>
+
+  <main class="relative h-[calc(100vh-112px)]">
+
+    <!-- 1 -->
+    <section class="slide active h-full flex-col items-center justify-center text-center px-8">
+      <span class="text-cyan-600 dark:text-cyan-400 font-bold tracking-widest mb-4">DEFINICIÓN</span>
+      <h1 class="text-5xl md:text-7xl font-black max-w-4xl leading-tight bg-gradient-to-r from-cyan-500 to-indigo-500 dark:from-cyan-300 dark:to-indigo-300 bg-clip-text text-transparent pb-2">¿Qué son las redes de telecomunicaciones?</h1>
+      <p class="mt-8 text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl">Conjunto de <span class="text-cyan-600 dark:text-cyan-300 font-semibold">medios, equipos y reglas</span> que permiten transmitir información (voz, datos, video) entre dos o más puntos <span class="text-cyan-600 dark:text-cyan-300 font-semibold">a distancia</span>.</p>
+      <p class="mt-6 text-slate-500 max-w-2xl">"Tele" = a distancia · "Comunicación" = intercambio de información</p>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-8">¿Por qué son tan importantes?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><div class="text-4xl mb-3">🌍</div><h3 class="font-bold text-cyan-600 dark:text-cyan-300 mb-1">Conectan al mundo</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Personas y empresas comunicadas sin importar la distancia.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><div class="text-4xl mb-3">💼</div><h3 class="font-bold text-cyan-600 dark:text-cyan-300 mb-1">Mueven la economía</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Banca, comercio, teletrabajo y servicios digitales.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><div class="text-4xl mb-3">🚑</div><h3 class="font-bold text-cyan-600 dark:text-cyan-300 mb-1">Servicios críticos</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Salud, emergencias, transporte y seguridad.</p></div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">Componentes de una red</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><div class="text-4xl mb-4">📤</div><h3 class="text-xl font-bold text-cyan-600 dark:text-cyan-300 mb-2">Emisor y Receptor</h3><p class="text-slate-500 dark:text-slate-400">Dispositivos que envían y reciben (teléfonos, PCs, servidores).</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><div class="text-4xl mb-4">🔌</div><h3 class="text-xl font-bold text-cyan-600 dark:text-cyan-300 mb-2">Medio de transmisión</h3><p class="text-slate-500 dark:text-slate-400">El canal: cable, fibra óptica u ondas (Wi-Fi, satélite).</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><div class="text-4xl mb-4">📋</div><h3 class="text-xl font-bold text-cyan-600 dark:text-cyan-300 mb-2">Protocolos</h3><p class="text-slate-500 dark:text-slate-400">Reglas comunes para que los equipos se "entiendan".</p></div>
+      </div>
+      <p class="mt-8 text-slate-500 text-center max-w-2xl">También: el <b>mensaje</b> (la información) y el <b>codificador</b> que la transforma en señal.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">Medios de transmisión</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><div class="text-4xl mb-3">🪢</div><h3 class="font-bold text-cyan-600 dark:text-cyan-300 mb-2">Cable de cobre</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Cable de red (Ethernet) y telefónico. Económico y común.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><div class="text-4xl mb-3">💡</div><h3 class="font-bold text-cyan-600 dark:text-cyan-300 mb-2">Fibra óptica</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Luz dentro de vidrio. Muy rápida y de larga distancia.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><div class="text-4xl mb-3">📶</div><h3 class="font-bold text-cyan-600 dark:text-cyan-300 mb-2">Inalámbrico</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Ondas: Wi-Fi, 4G/5G, satélite. Sin cables, gran movilidad.</p></div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">Tipos según su alcance</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="flex items-center gap-5 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="text-2xl font-black text-cyan-500 w-16">PAN</span><p class="text-slate-600 dark:text-slate-300"><b>Red personal</b> — pocos metros (Bluetooth, reloj y celular).</p></div>
+        <div class="flex items-center gap-5 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="text-2xl font-black text-emerald-500 w-16">LAN</span><p class="text-slate-600 dark:text-slate-300"><b>Red local</b> — casa, oficina o edificio.</p></div>
+        <div class="flex items-center gap-5 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="text-2xl font-black text-amber-500 w-16">MAN</span><p class="text-slate-600 dark:text-slate-300"><b>Red metropolitana</b> — una ciudad.</p></div>
+        <div class="flex items-center gap-5 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="text-2xl font-black text-fuchsia-500 w-16">WAN</span><p class="text-slate-600 dark:text-slate-300"><b>Red amplia</b> — países y continentes. <span class="text-fuchsia-500 dark:text-fuchsia-300">Internet es la WAN más grande.</span></p></div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">Topologías de red</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6 text-center"><div class="text-4xl mb-2">⭐</div><h3 class="font-bold text-cyan-600 dark:text-cyan-300">Estrella</h3><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Todo a un punto central. La más usada hoy.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6 text-center"><div class="text-4xl mb-2">➖</div><h3 class="font-bold text-cyan-600 dark:text-cyan-300">Bus</h3><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Un solo cable troncal. Antigua.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6 text-center"><div class="text-4xl mb-2">🔄</div><h3 class="font-bold text-cyan-600 dark:text-cyan-300">Anillo</h3><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Cada nodo conecta al siguiente en círculo.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6 text-center"><div class="text-4xl mb-2">🕸️</div><h3 class="font-bold text-cyan-600 dark:text-cyan-300">Malla</h3><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Todos con todos. Muy resistente a fallos.</p></div>
+      </div>
+    </section>
+
+    <!-- 7 (adicional) -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <span class="text-cyan-600 dark:text-cyan-400 font-bold tracking-widest mb-3 text-center block">CONTENIDO ADICIONAL</span>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Tecnologías actuales (2026)</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-cyan-600 dark:text-cyan-300 mb-1">📡 5G y camino al 6G</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Velocidades de gigabits y latencia mínima para autos autónomos e industria.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-cyan-600 dark:text-cyan-300 mb-1">🛰️ Internet satelital</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Starlink y otros llevan conexión a zonas rurales y remotas.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-cyan-600 dark:text-cyan-300 mb-1">🔗 IoT</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Miles de millones de dispositivos conectados (sensores, hogar inteligente).</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-cyan-600 dark:text-cyan-300 mb-1">🌫️ Edge computing</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Procesar datos cerca del usuario para responder más rápido.</p></div>
+      </div>
+    </section>
+
+    <!-- 8 ronda preguntas -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <div class="text-5xl mb-4">🙋</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center text-cyan-600 dark:text-cyan-300">Ronda de preguntas · 1</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">1. ¿Cuál es la diferencia entre una LAN y una WAN?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">2. ¿Por qué la fibra óptica es más rápida que el cobre?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">3. Menciona 3 componentes esenciales de una red.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">4. ¿Qué topología es la más usada hoy y por qué?</p></div>
+      </div>
+    </section>
+
+    <!-- 9 explicaciones comunes -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Dudas y mitos comunes</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "Internet y la Web son lo mismo"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ Internet es la red; la Web (páginas) es solo uno de sus servicios.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "Wi-Fi e Internet son sinónimos"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ Wi-Fi solo te conecta al router; el internet lo provee tu ISP.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "Más antenas = más cobertura siempre"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ Influyen la ubicación, interferencias y el estándar usado.</p></div>
+      </div>
+    </section>
+
+    <!-- 10 caso real -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">Ejemplo: un mensaje de WhatsApp</h2>
+      <p class="text-slate-500 dark:text-slate-400 max-w-2xl mb-8">Recorre toda una red de telecomunicaciones en menos de un segundo:</p>
+      <div class="flex flex-wrap items-center justify-center gap-3 max-w-4xl text-sm md:text-base">
+        <span class="px-4 py-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-300 font-semibold">📱 Tu celular</span><span>→</span>
+        <span class="px-4 py-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-300 font-semibold">📶 Antena / Wi-Fi</span><span>→</span>
+        <span class="px-4 py-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-300 font-semibold">🌐 Internet (WAN)</span><span>→</span>
+        <span class="px-4 py-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-300 font-semibold">🖥️ Servidor</span><span>→</span>
+        <span class="px-4 py-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-300 font-semibold">📱 Su celular</span>
+      </div>
+    </section>
+
+    <!-- 11 ronda preguntas 2 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <div class="text-5xl mb-4">🧠</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center text-cyan-600 dark:text-cyan-300">Ronda de preguntas · 2</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">5. ¿Qué ventaja da el 5G frente al 4G?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">6. ¿Para qué sirve el internet satelital?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">7. ¿Qué es el IoT? Da un ejemplo de tu casa.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">8. ¿Internet y la Web son lo mismo? Explica.</p></div>
+      </div>
+    </section>
+
+    <!-- 12 resumen -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <div class="text-5xl mb-4">✅</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8">Resumen de la Semana 1</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl w-full text-left">
+        <div class="rounded-xl bg-cyan-500/10 border border-cyan-400/30 p-5">Las redes transmiten información <b>a distancia</b> con medios, equipos y protocolos.</div>
+        <div class="rounded-xl bg-cyan-500/10 border border-cyan-400/30 p-5">Se clasifican por alcance: <b>PAN, LAN, MAN y WAN</b>.</div>
+        <div class="rounded-xl bg-cyan-500/10 border border-cyan-400/30 p-5">Los medios pueden ser <b>cobre, fibra o inalámbricos</b>.</div>
+        <div class="rounded-xl bg-cyan-500/10 border border-cyan-400/30 p-5">Hoy destacan <b>5G, fibra, satélite, IoT y edge</b>.</div>
+      </div>
+      <p class="mt-8 text-slate-500">¡Nos vemos en la Semana 2: IPs Privadas! 🔒</p>
+    </section>
+
+  </main>
+
+  <!-- Controles -->
+  <div class="no-print relative flex items-center justify-between px-6 py-3 border-t border-slate-200 dark:border-slate-800">
+    <button onclick="prev()" class="px-5 py-2 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 font-semibold transition">← Anterior</button>
+    <div id="dots" class="hidden md:flex gap-2"></div>
+    <button onclick="next()" class="px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-white font-bold transition">Siguiente →</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let cur = 0;
+    const dots = document.getElementById('dots');
+    slides.forEach((_, i) => { const d=document.createElement('button'); d.onclick=()=>go(i); dots.appendChild(d); });
+    function render(){
+      slides.forEach((s,i)=>s.classList.toggle('active', i===cur));
+      document.getElementById('counter').textContent = `${cur+1}/${slides.length}`;
+      [...dots.children].forEach((d,i)=>d.className=`h-2.5 rounded-full transition ${i===cur?'bg-cyan-500 w-6':'bg-slate-300 dark:bg-slate-600 w-2.5'}`);
+    }
+    function go(i){ cur=Math.max(0,Math.min(slides.length-1,i)); render(); }
+    function next(){ go(cur+1); } function prev(){ go(cur-1); }
+    function downloadPDF(){ window.print(); }
+    function toggleTheme(){ const el=document.documentElement; el.classList.toggle('dark'); localStorage.setItem('theme', el.classList.contains('dark')?'dark':'light'); updateThemeUI(); }
+    function updateThemeUI(){ const dark=document.documentElement.classList.contains('dark'); document.querySelectorAll('.theme-icon').forEach(e=>e.textContent=dark?'☀️':'🌙'); }
+    document.addEventListener('keydown',e=>{ if(e.key==='ArrowRight')next(); if(e.key==='ArrowLeft')prev(); });
+    updateThemeUI(); render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velocidad y Latencia · Semana 5</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+  <style type="text/tailwindcss">@custom-variant dark (&:where(.dark, .dark *));</style>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .slide { display:none; } .slide.active { display:flex; }
+    @media print {
+      .no-print { display:none !important; }
+      html, body { height:auto !important; overflow:visible !important; background:#fff !important; }
+      main { height:auto !important; } .bg-decor { display:none !important; }
+      .slide { display:flex !important; page-break-after:always; height:96vh; }
+    }
+  </style>
+  <script>(function(){ if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark'); })();</script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white h-screen overflow-hidden transition-colors duration-300">
+
+  <div class="bg-decor fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-fuchsia-400/20 dark:bg-fuchsia-600/25 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-pink-400/20 dark:bg-pink-600/20 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="no-print relative flex items-center justify-between px-6 py-3 border-b border-slate-200 dark:border-slate-800">
+    <a href="index.html" class="text-slate-500 dark:text-slate-400 hover:text-fuchsia-600 dark:hover:text-white text-sm font-semibold">← Inicio</a>
+    <span class="text-fuchsia-600 dark:text-fuchsia-400 text-xs md:text-sm font-bold tracking-wider text-center">⚡ SEMANA 5 · VELOCIDAD Y LATENCIA</span>
+    <div class="flex items-center gap-2">
+      <button onclick="downloadPDF()" class="px-3 py-1.5 rounded-lg bg-fuchsia-500 hover:bg-fuchsia-400 text-white text-sm font-semibold transition">📄 PDF</button>
+      <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center"><span class="theme-icon">🌙</span></button>
+      <span id="counter" class="text-slate-500 dark:text-slate-400 text-sm font-mono w-12 text-right">1/12</span>
+    </div>
+  </div>
+
+  <main class="relative h-[calc(100vh-112px)]">
+
+    <!-- 1 -->
+    <section class="slide active h-full flex-col items-center justify-center text-center px-8">
+      <span class="text-fuchsia-600 dark:text-fuchsia-400 font-bold tracking-widest mb-4">INTRODUCCIÓN</span>
+      <h1 class="text-5xl md:text-7xl font-black max-w-4xl leading-tight bg-gradient-to-r from-fuchsia-500 to-pink-500 dark:from-fuchsia-300 dark:to-pink-300 bg-clip-text text-transparent pb-2">Velocidad y Latencia</h1>
+      <p class="mt-8 text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl">Dos conceptos que <span class="text-fuchsia-600 dark:text-fuchsia-300 font-semibold">se confunden mucho</span>, pero miden cosas distintas de tu conexión.</p>
+      <p class="mt-6 text-slate-500 max-w-2xl">Una buena conexión necesita las dos cosas bien.</p>
+    </section>
+
+    <!-- 2 velocidad -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">Velocidad (ancho de banda)</h2>
+      <div class="max-w-3xl w-full">
+        <div class="rounded-2xl bg-fuchsia-500/10 border border-fuchsia-400/40 p-8 mb-6"><p class="text-xl text-slate-700 dark:text-slate-200"><span class="text-fuchsia-600 dark:text-fuchsia-300 font-bold">¿Cuánto?</span> — Es la <b>cantidad de datos</b> que se transfieren por segundo.</p></div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5 text-center"><p class="text-slate-500 text-sm mb-1">Se mide en</p><p class="text-2xl font-bold text-fuchsia-600 dark:text-fuchsia-300">Mbps / Gbps</p><p class="text-slate-500 text-sm mt-1">Megabits por segundo</p></div>
+          <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-slate-600 dark:text-slate-300">🚰 <b>Analogía:</b> el <b>grosor de una tubería</b>. Más ancha = pasa más agua a la vez.</p></div>
+        </div>
+        <p class="mt-6 text-center text-slate-500 dark:text-slate-400">Más velocidad = descargas, streaming y archivos grandes más rápidos.</p>
+      </div>
+    </section>
+
+    <!-- 3 latencia -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">Latencia (ping)</h2>
+      <div class="max-w-3xl w-full">
+        <div class="rounded-2xl bg-pink-500/10 border border-pink-400/40 p-8 mb-6"><p class="text-xl text-slate-700 dark:text-slate-200"><span class="text-pink-600 dark:text-pink-300 font-bold">¿Cuánto tarda?</span> — Es el <b>tiempo de retraso</b> en que un dato va y vuelve.</p></div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5 text-center"><p class="text-slate-500 text-sm mb-1">Se mide en</p><p class="text-2xl font-bold text-pink-600 dark:text-pink-300">ms</p><p class="text-slate-500 text-sm mt-1">Milisegundos (menos = mejor)</p></div>
+          <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-slate-600 dark:text-slate-300">⏱️ <b>Analogía:</b> el <b>tiempo de reacción</b>. Aunque la tubería sea ancha, importa qué tan rápido responde.</p></div>
+        </div>
+        <p class="mt-6 text-center text-slate-500 dark:text-slate-400">Latencia baja es clave en videojuegos, videollamadas y tiempo real.</p>
+      </div>
+    </section>
+
+    <!-- 4 diferencia -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">La diferencia, lado a lado</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full">
+        <div class="rounded-2xl bg-fuchsia-500/10 border border-fuchsia-400/40 p-8"><div class="text-4xl mb-3">📦</div><h3 class="text-2xl font-bold text-fuchsia-600 dark:text-fuchsia-300 mb-3">Velocidad</h3><p class="text-slate-600 dark:text-slate-300">Mide <b>cuántos datos</b> caben por segundo.</p><p class="text-slate-500 dark:text-slate-400 mt-2">Más es mejor ⬆️</p></div>
+        <div class="rounded-2xl bg-pink-500/10 border border-pink-400/40 p-8"><div class="text-4xl mb-3">⏳</div><h3 class="text-2xl font-bold text-pink-600 dark:text-pink-300 mb-3">Latencia</h3><p class="text-slate-600 dark:text-slate-300">Mide <b>cuánto se tarda</b> en responder.</p><p class="text-slate-500 dark:text-slate-400 mt-2">Menos es mejor ⬇️</p></div>
+      </div>
+      <div class="mt-8 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 px-8 py-5 max-w-3xl text-center"><p class="text-slate-600 dark:text-slate-300">💡 <b>Ejemplo:</b> una autopista de 10 carriles (mucha velocidad) no sirve si hay un peaje lento al inicio (mucha latencia).</p></div>
+    </section>
+
+    <!-- 5 factores velocidad -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">¿Qué afecta la velocidad?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-fuchsia-600 dark:text-fuchsia-300 mb-1">📋 El plan contratado</h3><p class="text-slate-500 dark:text-slate-400 text-sm">El tope que te vende tu proveedor.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-fuchsia-600 dark:text-fuchsia-300 mb-1">👨‍👩‍👧 Dispositivos conectados</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Se reparten el ancho de banda.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-fuchsia-600 dark:text-fuchsia-300 mb-1">🔌 Cable vs Wi-Fi</h3><p class="text-slate-500 dark:text-slate-400 text-sm">El cable suele dar más velocidad real.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-fuchsia-600 dark:text-fuchsia-300 mb-1">🖥️ Capacidad del equipo</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Un equipo viejo puede ser el cuello de botella.</p></div>
+      </div>
+    </section>
+
+    <!-- 6 factores latencia -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">¿Qué afecta la latencia?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-pink-600 dark:text-pink-300 mb-1">📍 Distancia al servidor</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Más lejos = más tiempo de viaje.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-pink-600 dark:text-pink-300 mb-1">🛰️ Tipo de conexión</h3><p class="text-slate-500 dark:text-slate-400 text-sm">La fibra tiene menos latencia que el satélite.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-pink-600 dark:text-pink-300 mb-1">🔁 Saltos en el camino</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Cada router intermedio agrega retraso.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-pink-600 dark:text-pink-300 mb-1">📶 Congestión de red</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Horas pico = más demora.</p></div>
+      </div>
+    </section>
+
+    <!-- 7 jitter y pérdida -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <span class="text-fuchsia-600 dark:text-fuchsia-400 font-bold tracking-widest mb-3 text-center block">CONTENIDO ADICIONAL</span>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Conceptos relacionados</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-8"><div class="text-4xl mb-3">📊</div><h3 class="text-2xl font-bold text-fuchsia-600 dark:text-fuchsia-300 mb-2">Jitter</h3><p class="text-slate-600 dark:text-slate-300">Variación de la latencia. Si es inestable, las videollamadas se entrecortan.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-8"><div class="text-4xl mb-3">📉</div><h3 class="text-2xl font-bold text-pink-600 dark:text-pink-300 mb-2">Pérdida de paquetes</h3><p class="text-slate-600 dark:text-slate-300">Datos que no llegan y deben reenviarse. Causa cortes y "lag".</p></div>
+      </div>
+    </section>
+
+    <!-- 8 cómo medir -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">¿Cómo medirlas?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><h3 class="font-bold text-fuchsia-600 dark:text-fuchsia-300 mb-2">🚀 Test de velocidad</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Sitios como Speedtest o Fast.com miden bajada, subida y ping.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><h3 class="font-bold text-pink-600 dark:text-pink-300 mb-2">📡 Comando ping</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Mide la latencia a un servidor:</p><p class="font-mono bg-slate-100 dark:bg-slate-800 rounded px-2 py-1 mt-2 text-sm">ping google.com</p></div>
+      </div>
+      <p class="mt-6 text-slate-500 text-center max-w-2xl">Tip: mide siempre por cable y sin descargas activas para un resultado real.</p>
+    </section>
+
+    <!-- 9 ronda 1 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <div class="text-5xl mb-4">🙋</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center text-fuchsia-600 dark:text-fuchsia-300">Ronda de preguntas · 1</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">1. ¿Qué mide la velocidad y en qué unidad?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">2. ¿Qué mide la latencia y en qué unidad?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">3. En la analogía de la tubería, ¿qué es la velocidad?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">4. ¿Qué comando mide la latencia?</p></div>
+      </div>
+    </section>
+
+    <!-- 10 mitos -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Dudas y mitos comunes</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "Más Mbps = mejor para jugar online"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ Para juegos importa más la <b>latencia baja</b> que los Mbps.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "Velocidad y latencia son lo mismo"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ Son independientes: puedes tener mucha velocidad y mala latencia.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "Mbps y MB/s son iguales"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ 8 megabits (Mb) = 1 megabyte (MB). 100 Mbps ≈ 12.5 MB/s.</p></div>
+      </div>
+    </section>
+
+    <!-- 11 ronda 2 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <div class="text-5xl mb-4">🧠</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center text-fuchsia-600 dark:text-fuchsia-300">Ronda de preguntas · 2</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">5. ¿Qué es el jitter?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">6. ¿Qué provoca la pérdida de paquetes?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">7. Para gaming, ¿qué priorizas: velocidad o latencia?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">8. ¿Cuántos MB/s son 100 Mbps?</p></div>
+      </div>
+    </section>
+
+    <!-- 12 resumen -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <div class="text-5xl mb-4">✅</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8">Resumen de la Semana 5</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl w-full text-left">
+        <div class="rounded-xl bg-fuchsia-500/10 border border-fuchsia-400/30 p-5"><b>Velocidad</b>: cuántos datos por segundo (Mbps). Más = mejor.</div>
+        <div class="rounded-xl bg-fuchsia-500/10 border border-fuchsia-400/30 p-5"><b>Latencia</b>: cuánto tarda en responder (ms). Menos = mejor.</div>
+        <div class="rounded-xl bg-fuchsia-500/10 border border-fuchsia-400/30 p-5">También importan el <b>jitter</b> y la <b>pérdida de paquetes</b>.</div>
+        <div class="rounded-xl bg-fuchsia-500/10 border border-fuchsia-400/30 p-5">Se miden con <b>Speedtest</b> y el comando <b>ping</b>.</div>
+      </div>
+      <p class="mt-8 text-slate-500">🎓 ¡Felicidades! Completaste las 5 semanas del curso.</p>
+    </section>
+
+  </main>
+
+  <div class="no-print relative flex items-center justify-between px-6 py-3 border-t border-slate-200 dark:border-slate-800">
+    <button onclick="prev()" class="px-5 py-2 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 font-semibold transition">← Anterior</button>
+    <div id="dots" class="hidden md:flex gap-2"></div>
+    <button onclick="next()" class="px-5 py-2 rounded-lg bg-fuchsia-500 hover:bg-fuchsia-400 text-white font-bold transition">Siguiente →</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let cur = 0;
+    const dots = document.getElementById('dots');
+    slides.forEach((_, i) => { const d=document.createElement('button'); d.onclick=()=>go(i); dots.appendChild(d); });
+    function render(){
+      slides.forEach((s,i)=>s.classList.toggle('active', i===cur));
+      document.getElementById('counter').textContent = `${cur+1}/${slides.length}`;
+      [...dots.children].forEach((d,i)=>d.className=`h-2.5 rounded-full transition ${i===cur?'bg-fuchsia-500 w-6':'bg-slate-300 dark:bg-slate-600 w-2.5'}`);
+    }
+    function go(i){ cur=Math.max(0,Math.min(slides.length-1,i)); render(); }
+    function next(){ go(cur+1); } function prev(){ go(cur-1); }
+    function downloadPDF(){ window.print(); }
+    function toggleTheme(){ const el=document.documentElement; el.classList.toggle('dark'); localStorage.setItem('theme', el.classList.contains('dark')?'dark':'light'); updateThemeUI(); }
+    function updateThemeUI(){ const dark=document.documentElement.classList.contains('dark'); document.querySelectorAll('.theme-icon').forEach(e=>e.textContent=dark?'☀️':'🌙'); }
+    document.addEventListener('keydown',e=>{ if(e.key==='ArrowRight')next(); if(e.key==='ArrowLeft')prev(); });
+    updateThemeUI(); render();
+  </script>
+</body>
+</html>

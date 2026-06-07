@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Qué es una LAN? · Semana 3</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+  <style type="text/tailwindcss">@custom-variant dark (&:where(.dark, .dark *));</style>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .slide { display:none; } .slide.active { display:flex; }
+    @media print {
+      .no-print { display:none !important; }
+      html, body { height:auto !important; overflow:visible !important; background:#fff !important; }
+      main { height:auto !important; } .bg-decor { display:none !important; }
+      .slide { display:flex !important; page-break-after:always; height:96vh; }
+    }
+  </style>
+  <script>(function(){ if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark'); })();</script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white h-screen overflow-hidden transition-colors duration-300">
+
+  <div class="bg-decor fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-emerald-400/20 dark:bg-emerald-600/25 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-teal-400/20 dark:bg-teal-600/20 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="no-print relative flex items-center justify-between px-6 py-3 border-b border-slate-200 dark:border-slate-800">
+    <a href="index.html" class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-white text-sm font-semibold">← Inicio</a>
+    <span class="text-emerald-600 dark:text-emerald-400 text-xs md:text-sm font-bold tracking-wider text-center">🏠 SEMANA 3 · LAN</span>
+    <div class="flex items-center gap-2">
+      <button onclick="downloadPDF()" class="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-white text-sm font-semibold transition">📄 PDF</button>
+      <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center"><span class="theme-icon">🌙</span></button>
+      <span id="counter" class="text-slate-500 dark:text-slate-400 text-sm font-mono w-12 text-right">1/12</span>
+    </div>
+  </div>
+
+  <main class="relative h-[calc(100vh-112px)]">
+
+    <!-- 1 -->
+    <section class="slide active h-full flex-col items-center justify-center text-center px-8">
+      <span class="text-emerald-600 dark:text-emerald-400 font-bold tracking-widest mb-4">DEFINICIÓN</span>
+      <h1 class="text-5xl md:text-7xl font-black max-w-4xl leading-tight bg-gradient-to-r from-emerald-500 to-teal-500 dark:from-emerald-300 dark:to-teal-300 bg-clip-text text-transparent pb-2">¿Qué es una LAN?</h1>
+      <p class="mt-5 text-lg text-slate-500">Local Area Network · Red de Área Local</p>
+      <p class="mt-6 text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl">Red que conecta dispositivos en un <span class="text-emerald-600 dark:text-emerald-300 font-semibold">espacio físico reducido</span>: casa, oficina, aula o edificio.</p>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">Características clave</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7 flex gap-4"><span class="text-3xl">📏</span><div><h3 class="font-bold text-emerald-600 dark:text-emerald-300 text-lg">Área limitada</h3><p class="text-slate-500 dark:text-slate-400">Cubre distancias cortas, un mismo lugar.</p></div></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7 flex gap-4"><span class="text-3xl">🚀</span><div><h3 class="font-bold text-emerald-600 dark:text-emerald-300 text-lg">Alta velocidad</h3><p class="text-slate-500 dark:text-slate-400">Transferencia rápida (hasta Gigabits).</p></div></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7 flex gap-4"><span class="text-3xl">🔐</span><div><h3 class="font-bold text-emerald-600 dark:text-emerald-300 text-lg">Privada</h3><p class="text-slate-500 dark:text-slate-400">La administra el dueño; usa IPs privadas.</p></div></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7 flex gap-4"><span class="text-3xl">🤝</span><div><h3 class="font-bold text-emerald-600 dark:text-emerald-300 text-lg">Recursos compartidos</h3><p class="text-slate-500 dark:text-slate-400">Impresoras, archivos e internet entre todos.</p></div></div>
+      </div>
+    </section>
+
+    <!-- 3 componentes -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">Componentes de una LAN</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-4xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6 text-center"><div class="text-4xl mb-2">📡</div><h3 class="font-bold text-emerald-600 dark:text-emerald-300">Router</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Conecta la LAN con internet.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6 text-center"><div class="text-4xl mb-2">🔀</div><h3 class="font-bold text-emerald-600 dark:text-emerald-300">Switch</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Une varios equipos por cable.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6 text-center"><div class="text-4xl mb-2">📶</div><h3 class="font-bold text-emerald-600 dark:text-emerald-300">Punto de acceso</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Da el Wi-Fi.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6 text-center"><div class="text-4xl mb-2">💻</div><h3 class="font-bold text-emerald-600 dark:text-emerald-300">Dispositivos</h3><p class="text-slate-500 dark:text-slate-400 text-sm">PCs, celulares, impresoras.</p></div>
+      </div>
+    </section>
+
+    <!-- 4 cableada vs inalámbrica -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">Cableada vs. Inalámbrica</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-8"><div class="text-4xl mb-3">🔌</div><h3 class="text-2xl font-bold text-emerald-600 dark:text-emerald-300 mb-3">LAN cableada</h3><ul class="space-y-2 text-slate-600 dark:text-slate-300"><li>• Usa cable Ethernet.</li><li>• Más estable y rápida.</li><li>• Ideal para PCs fijas y servidores.</li></ul></div>
+        <div class="rounded-2xl bg-emerald-500/10 border border-emerald-400/40 p-8"><div class="text-4xl mb-3">📶</div><h3 class="text-2xl font-bold text-emerald-600 dark:text-emerald-300 mb-3">WLAN (Wi-Fi)</h3><ul class="space-y-2 text-slate-600 dark:text-slate-300"><li>• Sin cables, por ondas.</li><li>• Cómoda y móvil.</li><li>• Ideal para celulares y laptops.</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 5 LAN vs WAN vs MAN -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">LAN vs MAN vs WAN</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="flex items-center gap-5 rounded-xl bg-emerald-500/10 border border-emerald-400/40 p-5"><span class="text-2xl font-black text-emerald-500 w-16">LAN</span><p class="text-slate-600 dark:text-slate-300"><b>Local</b> — una casa u oficina. (Lo nuestro)</p></div>
+        <div class="flex items-center gap-5 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="text-2xl font-black text-amber-500 w-16">MAN</span><p class="text-slate-600 dark:text-slate-300"><b>Metropolitana</b> — toda una ciudad.</p></div>
+        <div class="flex items-center gap-5 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="text-2xl font-black text-fuchsia-500 w-16">WAN</span><p class="text-slate-600 dark:text-slate-300"><b>Amplia</b> — países y continentes (internet).</p></div>
+      </div>
+      <p class="mt-8 text-slate-500 text-center">Varias LAN conectadas entre sí forman redes más grandes.</p>
+    </section>
+
+    <!-- 6 ejemplo hogar -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">Ejemplo: tu hogar es una LAN</h2>
+      <p class="text-slate-500 dark:text-slate-400 max-w-2xl mb-10">Todos los aparatos conectados al mismo router forman la red local.</p>
+      <div class="flex flex-wrap items-center justify-center gap-6 max-w-3xl">
+        <div class="flex flex-col items-center"><div class="text-5xl mb-2">📡</div><span class="text-emerald-600 dark:text-emerald-300 font-semibold">Router</span></div>
+        <span class="text-2xl text-slate-400">↔</span>
+        <div class="flex flex-col items-center"><div class="text-5xl mb-2">💻</div><span class="text-slate-600 dark:text-slate-300">Laptop</span></div>
+        <div class="flex flex-col items-center"><div class="text-5xl mb-2">📱</div><span class="text-slate-600 dark:text-slate-300">Celular</span></div>
+        <div class="flex flex-col items-center"><div class="text-5xl mb-2">🖨️</div><span class="text-slate-600 dark:text-slate-300">Impresora</span></div>
+        <div class="flex flex-col items-center"><div class="text-5xl mb-2">📺</div><span class="text-slate-600 dark:text-slate-300">Smart TV</span></div>
+      </div>
+    </section>
+
+    <!-- 7 problemas comunes -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <span class="text-emerald-600 dark:text-emerald-400 font-bold tracking-widest mb-3 text-center block">CONTENIDO ADICIONAL</span>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Problemas comunes y soluciones</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-emerald-600 dark:text-emerald-300 mb-1">📶 Wi-Fi lento o que se cae</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Acerca el router, evita paredes gruesas y microondas.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-emerald-600 dark:text-emerald-300 mb-1">🔁 IP duplicada</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Reinicia el router para que el DHCP reasigne.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-emerald-600 dark:text-emerald-300 mb-1">🚫 Sin internet pero con red</h3><p class="text-slate-500 dark:text-slate-400 text-sm">El problema está en el ISP, no en tu LAN.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-emerald-600 dark:text-emerald-300 mb-1">🐢 Demasiados equipos</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Saturan el ancho de banda; usa cable en lo crítico.</p></div>
+      </div>
+    </section>
+
+    <!-- 8 ronda 1 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <div class="text-5xl mb-4">🙋</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center text-emerald-600 dark:text-emerald-300">Ronda de preguntas · 1</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">1. ¿Qué significa LAN y qué área cubre?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">2. ¿Cuál es la diferencia entre un router y un switch?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">3. ¿Qué es una WLAN?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">4. ¿Por qué un cable suele ser más estable que el Wi-Fi?</p></div>
+      </div>
+    </section>
+
+    <!-- 9 mitos -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Dudas y mitos comunes</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "LAN = Wi-Fi"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ El Wi-Fi (WLAN) es solo la parte inalámbrica de la LAN.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "Más barras = más velocidad de internet"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ Las barras miden señal local, no la velocidad del ISP.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "La LAN necesita internet para funcionar"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ Una LAN funciona sola (compartir archivos, impresora) sin internet.</p></div>
+      </div>
+    </section>
+
+    <!-- 10 tecnologías actuales -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Tecnologías actuales (2026)</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-emerald-600 dark:text-emerald-300 mb-1">📶 Wi-Fi 6 y Wi-Fi 7</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Más velocidad y mejor manejo de muchos equipos a la vez.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-emerald-600 dark:text-emerald-300 mb-1">🌐 Redes Mesh</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Varios nodos cubren toda la casa sin zonas muertas.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-emerald-600 dark:text-emerald-300 mb-1">🔌 Ethernet Gigabit / 2.5G</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Cables que ya superan el gigabit por segundo.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-emerald-600 dark:text-emerald-300 mb-1">🏡 Hogar inteligente</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Muchos dispositivos IoT viven dentro de la LAN.</p></div>
+      </div>
+    </section>
+
+    <!-- 11 ronda 2 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <div class="text-5xl mb-4">🧠</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center text-emerald-600 dark:text-emerald-300">Ronda de preguntas · 2</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">5. ¿Qué es una red Mesh y qué problema resuelve?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">6. ¿Una LAN puede funcionar sin internet?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">7. Menciona una mejora del Wi-Fi 7.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">8. ¿Qué harías si tienes red pero no internet?</p></div>
+      </div>
+    </section>
+
+    <!-- 12 resumen -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <div class="text-5xl mb-4">✅</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8">Resumen de la Semana 3</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl w-full text-left">
+        <div class="rounded-xl bg-emerald-500/10 border border-emerald-400/30 p-5">Una LAN conecta equipos en un <b>área pequeña</b>.</div>
+        <div class="rounded-xl bg-emerald-500/10 border border-emerald-400/30 p-5">Sus piezas: <b>router, switch, punto de acceso</b> y dispositivos.</div>
+        <div class="rounded-xl bg-emerald-500/10 border border-emerald-400/30 p-5">Puede ser <b>cableada o inalámbrica (WLAN)</b>.</div>
+        <div class="rounded-xl bg-emerald-500/10 border border-emerald-400/30 p-5">Hoy destacan <b>Wi-Fi 6/7 y redes Mesh</b>.</div>
+      </div>
+      <p class="mt-8 text-slate-500">¡Nos vemos en la Semana 4: DNS! 🌐</p>
+    </section>
+
+  </main>
+
+  <div class="no-print relative flex items-center justify-between px-6 py-3 border-t border-slate-200 dark:border-slate-800">
+    <button onclick="prev()" class="px-5 py-2 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 font-semibold transition">← Anterior</button>
+    <div id="dots" class="hidden md:flex gap-2"></div>
+    <button onclick="next()" class="px-5 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-white font-bold transition">Siguiente →</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let cur = 0;
+    const dots = document.getElementById('dots');
+    slides.forEach((_, i) => { const d=document.createElement('button'); d.onclick=()=>go(i); dots.appendChild(d); });
+    function render(){
+      slides.forEach((s,i)=>s.classList.toggle('active', i===cur));
+      document.getElementById('counter').textContent = `${cur+1}/${slides.length}`;
+      [...dots.children].forEach((d,i)=>d.className=`h-2.5 rounded-full transition ${i===cur?'bg-emerald-500 w-6':'bg-slate-300 dark:bg-slate-600 w-2.5'}`);
+    }
+    function go(i){ cur=Math.max(0,Math.min(slides.length-1,i)); render(); }
+    function next(){ go(cur+1); } function prev(){ go(cur-1); }
+    function downloadPDF(){ window.print(); }
+    function toggleTheme(){ const el=document.documentElement; el.classList.toggle('dark'); localStorage.setItem('theme', el.classList.contains('dark')?'dark':'light'); updateThemeUI(); }
+    function updateThemeUI(){ const dark=document.documentElement.classList.contains('dark'); document.querySelectorAll('.theme-icon').forEach(e=>e.textContent=dark?'☀️':'🌙'); }
+    document.addEventListener('keydown',e=>{ if(e.key==='ArrowRight')next(); if(e.key==='ArrowLeft')prev(); });
+    updateThemeUI(); render();
+  </script>
+</body>
+</html>

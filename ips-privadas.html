@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPs Privadas · Semana 2</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+  <style type="text/tailwindcss">@custom-variant dark (&:where(.dark, .dark *));</style>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .slide { display:none; } .slide.active { display:flex; }
+    @media print {
+      .no-print { display:none !important; }
+      html, body { height:auto !important; overflow:visible !important; background:#fff !important; }
+      main { height:auto !important; } .bg-decor { display:none !important; }
+      .slide { display:flex !important; page-break-after:always; height:96vh; }
+    }
+  </style>
+  <script>(function(){ if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark'); })();</script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white h-screen overflow-hidden transition-colors duration-300">
+
+  <div class="bg-decor fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-400/20 dark:bg-indigo-600/25 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-purple-400/20 dark:bg-purple-600/20 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="no-print relative flex items-center justify-between px-6 py-3 border-b border-slate-200 dark:border-slate-800">
+    <a href="index.html" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white text-sm font-semibold">← Inicio</a>
+    <span class="text-indigo-600 dark:text-indigo-400 text-xs md:text-sm font-bold tracking-wider text-center">🔒 SEMANA 2 · IPs PRIVADAS</span>
+    <div class="flex items-center gap-2">
+      <button onclick="downloadPDF()" class="px-3 py-1.5 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold transition">📄 PDF</button>
+      <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center"><span class="theme-icon">🌙</span></button>
+      <span id="counter" class="text-slate-500 dark:text-slate-400 text-sm font-mono w-12 text-right">1/12</span>
+    </div>
+  </div>
+
+  <main class="relative h-[calc(100vh-112px)]">
+
+    <!-- 1 -->
+    <section class="slide active h-full flex-col items-center justify-center text-center px-8">
+      <span class="text-indigo-600 dark:text-indigo-400 font-bold tracking-widest mb-4">DEFINICIÓN</span>
+      <h1 class="text-5xl md:text-7xl font-black max-w-4xl leading-tight bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-300 dark:to-purple-300 bg-clip-text text-transparent pb-2">¿Qué son las IPs privadas?</h1>
+      <p class="mt-8 text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl">Direcciones <span class="text-indigo-600 dark:text-indigo-300 font-semibold">internas</span> que identifican a cada dispositivo <span class="text-indigo-600 dark:text-indigo-300 font-semibold">dentro de tu red local</span>.</p>
+      <p class="mt-6 text-slate-500 max-w-2xl">No son visibles en internet: solo funcionan "puertas adentro".</p>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">Primero: ¿qué es una IP?</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-2xl mb-8">Una dirección IP es el <b>"número de identificación"</b> de un dispositivo en una red. Hay dos versiones:</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-300 mb-2">IPv4</h3><p class="font-mono text-lg">192.168.1.10</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-2">4 números (0–255). ~4.300 millones de direcciones (ya se agotaron).</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7"><h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-300 mb-2">IPv6</h3><p class="font-mono text-sm break-all">2001:0db8:85a3::8a2e</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-2">Mucho más larga. Cantidad prácticamente infinita.</p></div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">Privada vs. Pública</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full">
+        <div class="rounded-2xl bg-indigo-500/10 border border-indigo-400/40 p-8"><div class="text-4xl mb-4">🏠</div><h3 class="text-2xl font-bold text-indigo-600 dark:text-indigo-300 mb-3">IP Privada</h3><ul class="space-y-2 text-slate-600 dark:text-slate-300"><li>• Identifica dispositivos <b>dentro</b> de tu red.</li><li>• La asigna tu router.</li><li>• Se puede repetir en otras redes.</li><li>• Gratis y reutilizable.</li></ul></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-8"><div class="text-4xl mb-4">🌍</div><h3 class="text-2xl font-bold text-cyan-600 dark:text-cyan-300 mb-3">IP Pública</h3><ul class="space-y-2 text-slate-600 dark:text-slate-300"><li>• Te identifica <b>en internet</b>.</li><li>• La asigna tu proveedor (ISP).</li><li>• Es <b>única</b> en todo el mundo.</li><li>• Es la "cara" de tu red al exterior.</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-6 text-center">Rangos reservados</h2>
+      <p class="text-slate-500 dark:text-slate-400 mb-8 text-center max-w-2xl">Apartados exclusivamente para uso privado (norma RFC 1918):</p>
+      <div class="space-y-4 max-w-3xl w-full font-mono">
+        <div class="flex items-center justify-between rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 px-6 py-5"><span class="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-300">10.0.0.0 – 10.255.255.255</span><span class="text-slate-500 dark:text-slate-400 text-sm font-sans">Grandes empresas</span></div>
+        <div class="flex items-center justify-between rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 px-6 py-5"><span class="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-300">172.16.0.0 – 172.31.255.255</span><span class="text-slate-500 dark:text-slate-400 text-sm font-sans">Redes medianas</span></div>
+        <div class="flex items-center justify-between rounded-xl bg-indigo-500/10 border border-indigo-400/40 px-6 py-5"><span class="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-300">192.168.0.0 – 192.168.255.255</span><span class="text-indigo-600 dark:text-indigo-300 text-sm font-sans font-semibold">¡El típico de tu casa!</span></div>
+      </div>
+    </section>
+
+    <!-- 5 NAT -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">¿Cómo salen a internet? → NAT</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-2xl mb-8">El <b>NAT</b> (Traducción de Direcciones de Red) deja que muchos dispositivos privados compartan <b>una sola IP pública</b>.</p>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4 max-w-4xl">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-sm text-slate-500 mb-1">Dispositivos privados</p><p class="font-mono text-indigo-600 dark:text-indigo-300">192.168.1.10<br>192.168.1.11<br>192.168.1.12</p></div>
+        <div class="text-3xl text-indigo-500">→ 🔀 Router (NAT) →</div>
+        <div class="rounded-xl bg-indigo-500/10 border border-indigo-400/40 p-5"><p class="text-sm text-slate-500 mb-1">Una IP pública</p><p class="font-mono text-cyan-600 dark:text-cyan-300 text-lg">200.55.10.7</p></div>
+      </div>
+    </section>
+
+    <!-- 6 DHCP -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">¿Quién reparte las IPs? → DHCP</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-2xl mb-8">El <b>DHCP</b> es el servicio del router que <b>asigna automáticamente</b> una IP privada a cada dispositivo que se conecta.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><div class="text-3xl mb-2">🔌</div><p class="text-slate-600 dark:text-slate-300">Te conectas al Wi-Fi</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><div class="text-3xl mb-2">📨</div><p class="text-slate-600 dark:text-slate-300">El DHCP te asigna una IP libre</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><div class="text-3xl mb-2">✅</div><p class="text-slate-600 dark:text-slate-300">Ya puedes comunicarte</p></div>
+      </div>
+      <p class="mt-6 text-slate-500">Sin DHCP tendrías que escribir la IP a mano en cada equipo.</p>
+    </section>
+
+    <!-- 7 cómo ver tu IP -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <span class="text-indigo-600 dark:text-indigo-400 font-bold tracking-widest mb-3 text-center block">CONTENIDO ADICIONAL</span>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">¿Cómo ver tu IP privada?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-indigo-600 dark:text-indigo-300 mb-2">🪟 Windows</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Abre CMD y escribe:</p><p class="font-mono bg-slate-100 dark:bg-slate-800 rounded px-2 py-1 mt-2 text-sm">ipconfig</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-indigo-600 dark:text-indigo-300 mb-2">🍎 Mac / Linux</h3><p class="text-slate-500 dark:text-slate-400 text-sm">En la terminal:</p><p class="font-mono bg-slate-100 dark:bg-slate-800 rounded px-2 py-1 mt-2 text-sm">ifconfig</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-indigo-600 dark:text-indigo-300 mb-2">📱 Celular</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Ajustes → Wi-Fi → toca tu red → ver detalles de IP.</p></div>
+      </div>
+    </section>
+
+    <!-- 8 ronda 1 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <div class="text-5xl mb-4">🙋</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center text-indigo-600 dark:text-indigo-300">Ronda de preguntas · 1</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">1. ¿Una IP privada se ve desde internet?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">2. ¿Cuál es el rango privado más común en casas?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">3. ¿Qué hace el NAT?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">4. ¿Para qué sirve el DHCP?</p></div>
+      </div>
+    </section>
+
+    <!-- 9 mitos -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Dudas y mitos comunes</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "Mi IP privada me identifica en internet"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ No. Hacia afuera te identifica la IP pública del router.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "Dos casas no pueden tener la misma IP"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ Sí pueden, porque las privadas se reutilizan en cada red.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="text-rose-500 font-semibold">❌ "La IP privada es un riesgo de seguridad"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">✅ Al contrario: ayuda a aislar tu red del exterior.</p></div>
+      </div>
+    </section>
+
+    <!-- 10 seguridad -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Seguridad y buenas prácticas (2026)</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-indigo-600 dark:text-indigo-300 mb-1">🔑 Cambia la clave del router</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Tanto la del Wi-Fi como la de administración.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-indigo-600 dark:text-indigo-300 mb-1">🧱 El NAT como escudo</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Oculta tus dispositivos del internet directo.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-indigo-600 dark:text-indigo-300 mb-1">👥 Red de invitados</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Separa visitas e IoT de tus equipos principales.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-indigo-600 dark:text-indigo-300 mb-1">📍 IP fija para servidores</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Útil para impresoras o cámaras que siempre deben estar.</p></div>
+      </div>
+    </section>
+
+    <!-- 11 ronda 2 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <div class="text-5xl mb-4">🧠</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center text-indigo-600 dark:text-indigo-300">Ronda de preguntas · 2</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">5. ¿Qué comando muestra tu IP en Windows?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">6. ¿Por qué se inventó IPv6?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">7. Menciona 2 buenas prácticas de seguridad en tu red.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">8. ¿Por qué dos casas pueden tener 192.168.1.1?</p></div>
+      </div>
+    </section>
+
+    <!-- 12 resumen -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <div class="text-5xl mb-4">✅</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8">Resumen de la Semana 2</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl w-full text-left">
+        <div class="rounded-xl bg-indigo-500/10 border border-indigo-400/30 p-5">Las IPs privadas identifican equipos <b>dentro</b> de tu red local.</div>
+        <div class="rounded-xl bg-indigo-500/10 border border-indigo-400/30 p-5">Tres rangos: <b>10.x, 172.16–31.x y 192.168.x</b>.</div>
+        <div class="rounded-xl bg-indigo-500/10 border border-indigo-400/30 p-5"><b>NAT</b> las traduce a una IP pública para salir a internet.</div>
+        <div class="rounded-xl bg-indigo-500/10 border border-indigo-400/30 p-5"><b>DHCP</b> las reparte automáticamente.</div>
+      </div>
+      <p class="mt-8 text-slate-500">¡Nos vemos en la Semana 3: LAN! 🏠</p>
+    </section>
+
+  </main>
+
+  <div class="no-print relative flex items-center justify-between px-6 py-3 border-t border-slate-200 dark:border-slate-800">
+    <button onclick="prev()" class="px-5 py-2 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 font-semibold transition">← Anterior</button>
+    <div id="dots" class="hidden md:flex gap-2"></div>
+    <button onclick="next()" class="px-5 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white font-bold transition">Siguiente →</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let cur = 0;
+    const dots = document.getElementById('dots');
+    slides.forEach((_, i) => { const d=document.createElement('button'); d.onclick=()=>go(i); dots.appendChild(d); });
+    function render(){
+      slides.forEach((s,i)=>s.classList.toggle('active', i===cur));
+      document.getElementById('counter').textContent = `${cur+1}/${slides.length}`;
+      [...dots.children].forEach((d,i)=>d.className=`h-2.5 rounded-full transition ${i===cur?'bg-indigo-500 w-6':'bg-slate-300 dark:bg-slate-600 w-2.5'}`);
+    }
+    function go(i){ cur=Math.max(0,Math.min(slides.length-1,i)); render(); }
+    function next(){ go(cur+1); } function prev(){ go(cur-1); }
+    function downloadPDF(){ window.print(); }
+    function toggleTheme(){ const el=document.documentElement; el.classList.toggle('dark'); localStorage.setItem('theme', el.classList.contains('dark')?'dark':'light'); updateThemeUI(); }
+    function updateThemeUI(){ const dark=document.documentElement.classList.contains('dark'); document.querySelectorAll('.theme-icon').forEach(e=>e.textContent=dark?'☀️':'🌙'); }
+    document.addEventListener('keydown',e=>{ if(e.key==='ArrowRight')next(); if(e.key==='ArrowLeft')prev(); });
+    updateThemeUI(); render();
+  </script>
+</body>
+</html>

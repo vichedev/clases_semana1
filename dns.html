@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Qué es un DNS? · Semana 4</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+  <style type="text/tailwindcss">@custom-variant dark (&:where(.dark, .dark *));</style>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .slide { display:none; } .slide.active { display:flex; }
+    @media print {
+      .no-print { display:none !important; }
+      html, body { height:auto !important; overflow:visible !important; background:#fff !important; }
+      main { height:auto !important; } .bg-decor { display:none !important; }
+      .slide { display:flex !important; page-break-after:always; height:96vh; }
+    }
+  </style>
+  <script>(function(){ if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark'); })();</script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white h-screen overflow-hidden transition-colors duration-300">
+
+  <div class="bg-decor fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-amber-400/20 dark:bg-amber-600/25 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-orange-400/20 dark:bg-orange-600/20 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="no-print relative flex items-center justify-between px-6 py-3 border-b border-slate-200 dark:border-slate-800">
+    <a href="index.html" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-white text-sm font-semibold">← Inicio</a>
+    <span class="text-amber-600 dark:text-amber-400 text-xs md:text-sm font-bold tracking-wider text-center">🌐 SEMANA 4 · DNS</span>
+    <div class="flex items-center gap-2">
+      <button onclick="downloadPDF()" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-white text-sm font-semibold transition">📄 PDF</button>
+      <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center"><span class="theme-icon">🌙</span></button>
+      <span id="counter" class="text-slate-500 dark:text-slate-400 text-sm font-mono w-12 text-right">1/12</span>
+    </div>
+  </div>
+
+  <main class="relative h-[calc(100vh-112px)]">
+
+    <!-- 1 -->
+    <section class="slide active h-full flex-col items-center justify-center text-center px-8">
+      <span class="text-amber-600 dark:text-amber-400 font-bold tracking-widest mb-4">DEFINICIÓN</span>
+      <h1 class="text-5xl md:text-7xl font-black max-w-4xl leading-tight bg-gradient-to-r from-amber-500 to-orange-500 dark:from-amber-300 dark:to-orange-300 bg-clip-text text-transparent pb-2">¿Qué es un DNS?</h1>
+      <p class="mt-5 text-lg text-slate-500">Domain Name System · Sistema de Nombres de Dominio</p>
+      <p class="mt-6 text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl">Es la <span class="text-amber-600 dark:text-amber-300 font-semibold">"agenda telefónica" de internet</span>: traduce los nombres que escribimos en direcciones IP que las máquinas entienden.</p>
+    </section>
+
+    <!-- 2 problema -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-12">El problema que resuelve</h2>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-6 max-w-4xl">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 px-8 py-6"><p class="text-slate-500 text-sm mb-2">Tú recuerdas fácil:</p><p class="text-2xl font-bold text-amber-600 dark:text-amber-300">www.google.com</p></div>
+        <div class="text-4xl text-amber-500">➜ DNS ➜</div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 px-8 py-6"><p class="text-slate-500 text-sm mb-2">La máquina necesita:</p><p class="text-2xl font-bold text-cyan-600 dark:text-cyan-300 font-mono">142.250.190.78</p></div>
+      </div>
+      <p class="mt-12 text-slate-500 dark:text-slate-400 max-w-2xl">Sin DNS tendrías que memorizar números para cada sitio web.</p>
+    </section>
+
+    <!-- 3 cómo funciona -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">¿Cómo funciona? (paso a paso)</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="flex items-start gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="flex-shrink-0 w-9 h-9 rounded-full bg-amber-500 text-white font-black flex items-center justify-center">1</span><p class="text-slate-600 dark:text-slate-300">Escribes <b>una dirección</b> en el navegador.</p></div>
+        <div class="flex items-start gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="flex-shrink-0 w-9 h-9 rounded-full bg-amber-500 text-white font-black flex items-center justify-center">2</span><p class="text-slate-600 dark:text-slate-300">Tu equipo <b>pregunta al servidor DNS</b> por la IP.</p></div>
+        <div class="flex items-start gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="flex-shrink-0 w-9 h-9 rounded-full bg-amber-500 text-white font-black flex items-center justify-center">3</span><p class="text-slate-600 dark:text-slate-300">El DNS <b>responde con la IP</b> correspondiente.</p></div>
+        <div class="flex items-start gap-4 rounded-xl bg-amber-500/10 border border-amber-400/40 p-5"><span class="flex-shrink-0 w-9 h-9 rounded-full bg-amber-500 text-white font-black flex items-center justify-center">4</span><p class="text-slate-700 dark:text-slate-200">El navegador <b>se conecta a esa IP</b> y carga la página. ¡En milisegundos!</p></div>
+      </div>
+    </section>
+
+    <!-- 4 jerarquía -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">La jerarquía del DNS</h2>
+      <div class="space-y-3 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300">1. Servidores raíz (root)</h3><p class="text-slate-500 dark:text-slate-400 text-sm">El punto de partida de toda consulta.</p></div>
+        <div class="text-center text-amber-500">↓</div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300">2. Servidores TLD</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Gestionan las terminaciones: .com, .org, .ec …</p></div>
+        <div class="text-center text-amber-500">↓</div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300">3. Servidor autoritativo</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Tiene la IP final del dominio buscado.</p></div>
+      </div>
+    </section>
+
+    <!-- 5 tipos de registros -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-10 text-center">Tipos de registros DNS</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl w-full">
+        <div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="font-mono font-black text-amber-500 w-20">A</span><p class="text-slate-600 dark:text-slate-300 text-sm">Nombre → dirección IPv4.</p></div>
+        <div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="font-mono font-black text-amber-500 w-20">AAAA</span><p class="text-slate-600 dark:text-slate-300 text-sm">Nombre → dirección IPv6.</p></div>
+        <div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="font-mono font-black text-amber-500 w-20">CNAME</span><p class="text-slate-600 dark:text-slate-300 text-sm">Alias de un nombre a otro.</p></div>
+        <div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><span class="font-mono font-black text-amber-500 w-20">MX</span><p class="text-slate-600 dark:text-slate-300 text-sm">A qué servidor llega el correo.</p></div>
+        <div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5 md:col-span-2"><span class="font-mono font-black text-amber-500 w-20">TXT</span><p class="text-slate-600 dark:text-slate-300 text-sm">Texto libre: verificaciones y seguridad de correo (SPF, DKIM).</p></div>
+      </div>
+    </section>
+
+    <!-- 6 caché -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">Caché DNS y TTL</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-2xl mb-8">Para no preguntar siempre lo mismo, las respuestas se <b>guardan temporalmente</b> (caché). El <b>TTL</b> dice cuánto tiempo guardarlas.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><div class="text-3xl mb-2">💾</div><h3 class="font-bold text-amber-600 dark:text-amber-300">Más rápido</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Webs visitadas cargan al instante.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><div class="text-3xl mb-2">⏲️</div><h3 class="font-bold text-amber-600 dark:text-amber-300">TTL</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Tiempo de vida del dato guardado.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><div class="text-3xl mb-2">🧹</div><h3 class="font-bold text-amber-600 dark:text-amber-300">Limpiar caché</h3><p class="text-slate-500 dark:text-slate-400 text-sm font-mono">ipconfig /flushdns</p></div>
+      </div>
+    </section>
+
+    <!-- 7 DNS públicos -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <span class="text-amber-600 dark:text-amber-400 font-bold tracking-widest mb-3 text-center block">CONTENIDO ADICIONAL</span>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Servidores DNS populares</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl w-full">
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300 mb-2">Google</h3><p class="font-mono text-lg">8.8.8.8</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-2">Rápido y muy estable.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300 mb-2">Cloudflare</h3><p class="font-mono text-lg">1.1.1.1</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-2">Enfocado en privacidad.</p></div>
+        <div class="rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-7 text-center"><h3 class="font-bold text-amber-600 dark:text-amber-300 mb-2">El de tu ISP</h3><p class="font-mono text-lg">Automático</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-2">El que viene por defecto.</p></div>
+      </div>
+    </section>
+
+    <!-- 8 ronda 1 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <div class="text-5xl mb-4">🙋</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center text-amber-600 dark:text-amber-300">Ronda de preguntas · 1</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">1. ¿A qué se le compara comúnmente el DNS?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">2. ¿Qué traduce el DNS exactamente?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">3. ¿Qué hace un registro tipo A?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">4. ¿Para qué sirve la caché DNS?</p></div>
+      </div>
+    </section>
+
+    <!-- 9 problemas -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Problemas comunes</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold text-amber-600 dark:text-amber-300">⚠️ "DNS server not responding"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">El servidor DNS falla; prueba cambiar a 8.8.8.8 o 1.1.1.1.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold text-amber-600 dark:text-amber-300">🐢 La web no carga pero el internet "anda"</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Suele ser caché vieja: usa <span class="font-mono">ipconfig /flushdns</span>.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold text-amber-600 dark:text-amber-300">🌍 Una web se ve en un país y en otro no</p><p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Propagación de DNS: los cambios tardan en actualizarse en todo el mundo.</p></div>
+      </div>
+    </section>
+
+    <!-- 10 seguridad -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center">Seguridad del DNS (2026)</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-amber-600 dark:text-amber-300 mb-1">🔏 DNSSEC</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Firma las respuestas para evitar que te engañen con una IP falsa.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-amber-600 dark:text-amber-300 mb-1">🔒 DNS over HTTPS (DoH)</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Cifra tus consultas para que nadie vea qué sitios visitas.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-amber-600 dark:text-amber-300 mb-1">🎣 DNS spoofing / phishing</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Ataques que te redirigen a webs falsas. DNSSEC ayuda a evitarlos.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-6"><h3 class="font-bold text-amber-600 dark:text-amber-300 mb-1">🛡️ DNS con filtro</h3><p class="text-slate-500 dark:text-slate-400 text-sm">Algunos bloquean malware y contenido inseguro automáticamente.</p></div>
+      </div>
+    </section>
+
+    <!-- 11 ronda 2 -->
+    <section class="slide h-full flex-col items-center justify-center px-8">
+      <div class="text-5xl mb-4">🧠</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-center text-amber-600 dark:text-amber-300">Ronda de preguntas · 2</h2>
+      <div class="space-y-4 max-w-3xl w-full">
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">5. Nombra dos servidores DNS públicos.</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">6. ¿Qué hace DNSSEC?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">7. ¿Qué ventaja da DNS over HTTPS?</p></div>
+        <div class="rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 p-5"><p class="font-semibold">8. ¿Qué comando limpia la caché DNS en Windows?</p></div>
+      </div>
+    </section>
+
+    <!-- 12 resumen -->
+    <section class="slide h-full flex-col items-center justify-center px-8 text-center">
+      <div class="text-5xl mb-4">✅</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-8">Resumen de la Semana 4</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl w-full text-left">
+        <div class="rounded-xl bg-amber-500/10 border border-amber-400/30 p-5">El DNS traduce <b>nombres en direcciones IP</b>.</div>
+        <div class="rounded-xl bg-amber-500/10 border border-amber-400/30 p-5">Funciona en <b>jerarquía</b>: root → TLD → autoritativo.</div>
+        <div class="rounded-xl bg-amber-500/10 border border-amber-400/30 p-5">Usa <b>registros</b> (A, AAAA, CNAME, MX, TXT) y <b>caché/TTL</b>.</div>
+        <div class="rounded-xl bg-amber-500/10 border border-amber-400/30 p-5">Se protege con <b>DNSSEC y DNS over HTTPS</b>.</div>
+      </div>
+      <p class="mt-8 text-slate-500">¡Nos vemos en la Semana 5: Velocidad y Latencia! ⚡</p>
+    </section>
+
+  </main>
+
+  <div class="no-print relative flex items-center justify-between px-6 py-3 border-t border-slate-200 dark:border-slate-800">
+    <button onclick="prev()" class="px-5 py-2 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 font-semibold transition">← Anterior</button>
+    <div id="dots" class="hidden md:flex gap-2"></div>
+    <button onclick="next()" class="px-5 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-white font-bold transition">Siguiente →</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let cur = 0;
+    const dots = document.getElementById('dots');
+    slides.forEach((_, i) => { const d=document.createElement('button'); d.onclick=()=>go(i); dots.appendChild(d); });
+    function render(){
+      slides.forEach((s,i)=>s.classList.toggle('active', i===cur));
+      document.getElementById('counter').textContent = `${cur+1}/${slides.length}`;
+      [...dots.children].forEach((d,i)=>d.className=`h-2.5 rounded-full transition ${i===cur?'bg-amber-500 w-6':'bg-slate-300 dark:bg-slate-600 w-2.5'}`);
+    }
+    function go(i){ cur=Math.max(0,Math.min(slides.length-1,i)); render(); }
+    function next(){ go(cur+1); } function prev(){ go(cur-1); }
+    function downloadPDF(){ window.print(); }
+    function toggleTheme(){ const el=document.documentElement; el.classList.toggle('dark'); localStorage.setItem('theme', el.classList.contains('dark')?'dark':'light'); updateThemeUI(); }
+    function updateThemeUI(){ const dark=document.documentElement.classList.contains('dark'); document.querySelectorAll('.theme-icon').forEach(e=>e.textContent=dark?'☀️':'🌙'); }
+    document.addEventListener('keydown',e=>{ if(e.key==='ArrowRight')next(); if(e.key==='ArrowLeft')prev(); });
+    updateThemeUI(); render();
+  </script>
+</body>
+</html>
