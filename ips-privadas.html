@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IPs Privadas · Semana 2</title>
+  <title>IPs Privadas</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap" rel="stylesheet">
   <style type="text/tailwindcss">@custom-variant dark (&:where(.dark, .dark *));</style>
@@ -17,16 +17,16 @@
       main { height:auto !important; } .bg-decor { display:none !important; }
       .slide { display:flex !important; page-break-after:always; height:96vh; padding-top:78px !important; position:relative; }
       .slide::before {
-        content: "🔒 SEMANA 2 · IPs PRIVADAS";
+        content: "🔒 IPs PRIVADAS";
         position:absolute; top:0; left:0; right:0;
-        padding:16px 24px; text-align:center;
-        font-size:18px; font-weight:800; letter-spacing:0.04em; color:#4f46e5;
-        border-bottom:2px solid #e2e8f0;
+        padding:18px 24px; text-align:center;
+        font-size:17px; font-weight:800; letter-spacing:0.04em; color:#4f46e5;
+        background:#ffffff; border-bottom:2px solid #e2e8f0;
       }
       .slide h1 { color:#4f46e5 !important; -webkit-text-fill-color:#4f46e5 !important; background:none !important; }
     }
     .slide .font-mono { word-break: break-word; }
-    @media (max-width: 767px) {
+    @media screen and (max-width: 767px) {
       .slide { justify-content: flex-start !important; padding: 1.25rem !important; overflow-y: auto; -webkit-overflow-scrolling: touch; }
       .slide h1 { font-size: 2.1rem !important; line-height: 1.15 !important; }
       .slide h2 { font-size: 1.55rem !important; line-height: 1.25 !important; }
@@ -43,7 +43,7 @@
 
   <div class="no-print relative flex items-center justify-between px-6 py-3 border-b border-slate-200 dark:border-slate-800">
     <a href="index.html" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white text-sm font-semibold">← Inicio</a>
-    <span class="hidden sm:block text-indigo-600 dark:text-indigo-400 text-xs md:text-sm font-bold tracking-wider text-center">🔒 SEMANA 2 · IPs PRIVADAS</span>
+    <span class="hidden sm:block text-indigo-600 dark:text-indigo-400 text-xs md:text-sm font-bold tracking-wider text-center">🔒 IPs PRIVADAS</span>
     <div class="flex items-center gap-2">
       <button onclick="downloadPDF()" class="px-3 py-1.5 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold transition">📄 PDF</button>
       <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center"><span class="theme-icon">🌙</span></button>
@@ -173,14 +173,14 @@
     <!-- 12 resumen -->
     <section class="slide h-full flex-col items-center justify-center px-8 text-center">
       <div class="text-5xl mb-4">✅</div>
-      <h2 class="text-4xl md:text-5xl font-black mb-8">Resumen de la Semana 2</h2>
+      <h2 class="text-4xl md:text-5xl font-black mb-8">Resumen del tema</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl w-full text-left">
         <div class="rounded-xl bg-indigo-500/10 border border-indigo-400/30 p-5">Las IPs privadas identifican equipos <b>dentro</b> de tu red local.</div>
         <div class="rounded-xl bg-indigo-500/10 border border-indigo-400/30 p-5">Tres rangos: <b>10.x, 172.16–31.x y 192.168.x</b>.</div>
         <div class="rounded-xl bg-indigo-500/10 border border-indigo-400/30 p-5"><b>NAT</b> las traduce a una IP pública para salir a internet.</div>
         <div class="rounded-xl bg-indigo-500/10 border border-indigo-400/30 p-5"><b>DHCP</b> las reparte automáticamente.</div>
       </div>
-      <p class="mt-8 text-slate-500">¡Nos vemos en la Semana 3: LAN! 🏠</p>
+      <p class="mt-8 text-slate-500">Siguiente tema: ¿Qué es una LAN? 🏠</p>
     </section>
 
   </main>
